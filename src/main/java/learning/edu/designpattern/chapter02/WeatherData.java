@@ -1,44 +1,40 @@
 package learning.edu.designpattern.chapter02;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.stream.Collectors;
+
 /**
  * Created by duchuunguyen on 5/18/2017.
  */
-public class WeatherData {
+public class WeatherData extends Observable {
     private float temperature;
     private float humidity;
     private float pressure;
 
-    public void measurementsChanged() {
-        float temp = getTemperature();
-        float humidity = getHumidity();
-        float pressure = getPressure();
-
-        currentConditionDisplay.update(temp, humidity, pressure);
-        statisticDisplay.update(temp, humidity, pressure);
-        forcastDisplay.update(temp, humidity, pressure);
-    }
-
-    public float getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(float humidity) {
+    public void setMeasurements(float temp, float humidity, float pressure) {
+        this.temperature = temp;
         this.humidity = humidity;
-    }
-
-    public float getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(float pressure) {
         this.pressure = pressure;
+
+        measurementsChanged();
+    }
+
+    public void measurementsChanged() {
+        setChanged();
+        notifyObservers();
     }
 
     public float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
+    public float getHumidity() {
+        return humidity;
+    }
+
+    public float getPressure() {
+        return pressure;
     }
 }
