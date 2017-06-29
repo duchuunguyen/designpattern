@@ -1,7 +1,7 @@
 package learning.edu.designpattern.chapter05;
 
 /**
- * Created by duchuunguyen on 6/12/17.
+ * Created by duchuunguyen up 6/12/17.
  */
 public class ChocolateBoiler {
     private static ChocolateBoiler chocolateBoiler;
